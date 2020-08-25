@@ -5,7 +5,7 @@ let submitFunction = function(event){
 
 let mess = document.getElementById('m');
 socket.emit('chat message', mess.value);
-
+mess.value = " "
 }
 
 
