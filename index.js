@@ -5,10 +5,22 @@ var io = require('socket.io')(http);
 
 app.use(express.static('./public'))
 
+
+
 io.on('connection', (socket) => {
     console.log('a user has connected');
-    socket.on('chat message', (msg) => {
-        io.emit('chat message', msg);
+    socket.on('add-user', function(userinput){
+        
+        user = userinput
+        
+    })
+
+    socket.on('chat message', (data) => {
+      
+        
+
+          io.emit('chat message', data);
+        
     })
 })
 
