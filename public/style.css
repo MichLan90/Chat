@@ -8,7 +8,7 @@ body {
     font: 16px Helvetica, Arial; 
     opacity: 0.8;
     background-size: cover;
-    background-color: gainsboro;
+    background-color: rgb(125, 144, 190);
 }
 
 #cont { 
@@ -19,7 +19,7 @@ body {
     left: 25%; 
     width: 50%; 
     text-align: center;
-    max-height: 60%;
+    max-height: 70%;
     border-radius: 5px;
 }
 
@@ -33,7 +33,7 @@ body {
 
 #cont button { 
     width: 9%; 
-    background: rgb(236, 226, 132); 
+    background: rgb(148, 178, 248); 
     border: none; 
     padding: 10px;
     font-weight: bold;
@@ -43,12 +43,21 @@ body {
 #messages { 
     list-style-type: none; 
     margin: 0; 
-    padding: 0; }
+    padding: 0; 
+    opacity: 0.5
+}
 
 #messages li { 
-    padding: 5px 10px; }
+    padding: 5px 10px; 
+}
 
 #title {
     text-align: center;
     margin-top: 7%;
+    width: 50%;
+    background-color:  rgb(148, 178, 248);
+    position: fixed; 
+    left: 25%;
+    right: 25%;
+    border-radius: 5px;
 }
