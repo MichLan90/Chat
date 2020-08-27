@@ -1,8 +1,7 @@
 var socket = io();
-
-
 let user = ""
 
+/*
 let submitFunction = function(event){
 
   let mess = document.getElementById('m').value;
@@ -11,6 +10,7 @@ let submitFunction = function(event){
   document.getElementById('m').value = " "
 
 }
+*/
 
 let addUser = function(){
     let uservalue = document.getElementById('u');
@@ -28,13 +28,6 @@ let addUser = function(){
     console.log(user)
 }
 
-/* $('form').submit(function(e){
-e.preventDefault(); // prevents page reloading
-socket.emit('chat message', $('#m').val());
-$('#m').val('');
-return false;
-}); */
-
 socket.on('chat message', (data) => {
   console.log(data)
   let messages = document.getElementById('messages');
@@ -44,3 +37,52 @@ socket.on('chat message', (data) => {
 
 });
 
+
+
+
+// ------------   GIPHY  ---------------- //
+const url = "https://api.giphy.com/v1/gifs/search";
+const apiKey = "bBZrIS5GzD5jGLAAg0CfqgcgGNlgWDN2";
+const inputValue = document.getElementById("m")
+const button = document.getElementById("button")
+
+button.addEventListener('click', function(){
+if(inputValue.value == "/giphy") {
+  async function giphy() {
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    socket.emit('chat message' {
+      inputValue: inputValue.value,
+      // the item from giphy  --> data.q ??
+});  
+  }
+  giphy();
+  inputValue.value = "";
+} else {
+    let mess = document.getElementById('m').value;
+    socket.emit('chat message', {user, mess});
+    document.getElementById('m').value = " "
+  } 
+  inputValue.value = "";
+});
+
+
+
+// Function that checks and show/hide
+
+function showHide() {
+  const inputValue = document.getElementById("m");
+
+  if (inputValue.value == '/') {
+    const giphy = document.getElementById('giphy')
+    giphy.style.display = 'block'
+    giphy.onclick = function () {        
+        inputValue.value = '/giphy'
+        giphy.style.display = 'none'
+      }
+  } else {
+      giphy.style.display = 'none'
+  }
+};
