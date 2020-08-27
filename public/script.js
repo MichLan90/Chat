@@ -53,9 +53,8 @@ if(inputValue.value == "/giphy") {
     const response = await fetch(url);
     const data = await response.json();
 
-    socket.emit('chat message' {
-      inputValue: inputValue.value,
-      // the item from giphy  --> data.q ??
+    socket.emit('chat message', {
+      // here -> inputvalue? data.q? vet inte?!
 });  
   }
   giphy();

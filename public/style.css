@@ -89,3 +89,11 @@ body {
     border-radius: 5px;
     margin-top: 17%;
 }
+
+#giphy {
+    background-color: rgb(121, 210, 251);
+    width: 500px;
+    height: 200px;
+    text-align: center;
+    margin: 15px;
+}
