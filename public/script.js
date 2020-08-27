@@ -29,12 +29,18 @@ let addUser = function(){
 }
 
 socket.on('chat message', (data) => {
-  console.log(data)
   let messages = document.getElementById('messages');
   let newmess = document.createElement('li');
+
+  if (data.type == "img") {
+    let img = document.createElement("img");
+    img.src = data.content
+    messages.appendChild(img);
+  } 
+
+  console.log(data)
   newmess.innerText = data.user + ": " + data.mess
   messages.append(newmess)
-
 });
 
 
@@ -45,27 +51,39 @@ const url = "https://api.giphy.com/v1/gifs/search";
 const apiKey = "bBZrIS5GzD5jGLAAg0CfqgcgGNlgWDN2";
 const inputValue = document.getElementById("m")
 const button = document.getElementById("button")
+const gif = document.getElementById("gifList").url
 
-button.addEventListener('click', function(){
-if(inputValue.value == "/giphy") {
-  async function giphy() {
+async function giphy() {
 
-    const response = await fetch(url);
-    const data = await response.json();
+  const response = await fetch(url);
+  const data = await response.json();
+  let item = data[Math.floor(Math.random() * data.length)];
+  return data[item].images.downsized_small.url
+}
 
+
+button.addEventListener('click', async function(){
+  if(inputValue.value == "/giphy") {
+    const img_url = await giphy();
     socket.emit('chat message', {
-      // here -> inputvalue? data.q? vet inte?!
-});  
-  }
-  giphy();
-  inputValue.value = "";
-} else {
-    let mess = document.getElementById('m').value;
-    socket.emit('chat message', {user, mess});
-    document.getElementById('m').value = " "
-  } 
-  inputValue.value = "";
+      type: "img",
+      content: img_url,
+      user: user
+    });  
+    inputValue.value = "";  
+  } else {
+      let mess = document.getElementById('m').value;
+      socket.emit('chat message', {
+        type: "text",
+        content: mess,
+        user: user
+      });
+      document.getElementById('m').value = " "
+    } 
+    inputValue.value = "";
 });
+
+
 
 
 
@@ -77,10 +95,10 @@ function showHide() {
   if (inputValue.value == '/') {
     const giphy = document.getElementById('giphy')
     giphy.style.display = 'block'
-    giphy.onclick = function () {        
+  /*  giphy.onclick = function () {        
         inputValue.value = '/giphy'
         giphy.style.display = 'none'
-      }
+      }*/
   } else {
       giphy.style.display = 'none'
   }
