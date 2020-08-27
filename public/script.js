@@ -33,33 +33,38 @@ socket.on('chat message', (data) => {
   let newmess = document.createElement('li');
 
   if (data.type == "img") {
-    let img = document.createElement("img");
+    let img = document.createElement("iframe");
     img.src = data.content
+    newmess.innerText = data.user + ": "
+    messages.append(newmess)
     messages.appendChild(img);
-  } 
+  } else {
+    newmess.innerText = data.user + ": " + data.content
+    messages.append(newmess)
+  }
 
-  console.log(data)
-  newmess.innerText = data.user + ": " + data.mess
-  messages.append(newmess)
 });
 
 
 
 
 // ------------   GIPHY  ---------------- //
-const url = "https://api.giphy.com/v1/gifs/search";
-const apiKey = "bBZrIS5GzD5jGLAAg0CfqgcgGNlgWDN2";
+const api_key = "bBZrIS5GzD5jGLAAg0CfqgcgGNlgWDN2";
+const url = "https://api.giphy.com/v1/gifs/search?q=laugh&api_key=bBZrIS5GzD5jGLAAg0CfqgcgGNlgWDN2";
 const inputValue = document.getElementById("m")
 const button = document.getElementById("button")
-const gif = document.getElementById("gifList").url
+
 
 async function giphy() {
 
   const response = await fetch(url);
   const data = await response.json();
-  let item = data[Math.floor(Math.random() * data.length)];
-  return data[item].images.downsized_small.url
-}
+  console.log(data);
+  let item = data.data[Math.floor(Math.random() * data.data.length)];
+  console.log(item.embed_url);
+  return item.embed_url
+}  
+
 
 
 button.addEventListener('click', async function(){
@@ -78,7 +83,7 @@ button.addEventListener('click', async function(){
         content: mess,
         user: user
       });
-      document.getElementById('m').value = " "
+      document.getElementById('m').value = ""
     } 
     inputValue.value = "";
 });
@@ -87,19 +92,21 @@ button.addEventListener('click', async function(){
 
 
 
-// Function that checks and show/hide
 
+// Function that checks and show/hide
+/*
 function showHide() {
   const inputValue = document.getElementById("m");
 
   if (inputValue.value == '/') {
     const giphy = document.getElementById('giphy')
     giphy.style.display = 'block'
-  /*  giphy.onclick = function () {        
+   giphy.onclick = function () {        
         inputValue.value = '/giphy'
         giphy.style.display = 'none'
-      }*/
+      }
   } else {
       giphy.style.display = 'none'
   }
 };
+*/
