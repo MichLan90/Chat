@@ -97,3 +97,11 @@ body {
     margin: 15px;
     display: none;
 }
+
+#showhide.a{
+    visibility: hidden;
+}
+
+#showhide.b{
+    visibility: visible;
+}

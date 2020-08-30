@@ -90,8 +90,41 @@ button.addEventListener('click', async function(){
 
 
 
+function showHide(){
+  
+  let divtohide = document.getElementById('showhide');
+  let input = document.getElementById('m').value
+  console.log(input)
 
+  if (input == "/") {
+    document.getElementById('showhide').className = "b";
+    
+  }else if (input == "/g") {
+    document.getElementById('showhide').className = "b";
+    
+  }else if (input == "/gi") {
+    document.getElementById('showhide').className = "b";
+    
+  }else if (input == "/gip") {
+    document.getElementById('showhide').className = "b";
+    
+  }else if (input == "/giph") {
+    document.getElementById('showhide').className = "b";
+    
+  }else if (input == "/giphy") {
+    document.getElementById('showhide').className = "b";
+    
+  }else {
+    document.getElementById('showhide').className = "a";
+   
+  }
 
+}
+
+function select(){
+  console.log("asd")
+  document.getElementById('m').value = "/giphy"
+}
 
 // Function that checks and show/hide
 /*
