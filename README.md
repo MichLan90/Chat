@@ -19,6 +19,10 @@ Express behöver installeras
 Socket.io behöver installeras
  $ npm install socket.io
 Kolla att alla dependencies installeras korrekt i package.json
+
+För att köra projekten behöver man i terminalen skriva
+$ node index.js
+Projektet öppnas i webbläsaren på http://localhost:3000/
 -------------------------------Instruktionerna-------------------------------
 Kommando för att få ut en GIF är /giphy
 Ett kommando förslag kommer upp när man börjar skriva "g" efter "/".
